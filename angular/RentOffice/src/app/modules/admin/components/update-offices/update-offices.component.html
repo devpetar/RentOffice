@@ -1,0 +1,31 @@
+<nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+    <div class="office-details-form-container">
+        <nz-form [formGroup]="updateOfficeForm" nzLayout="vertical" class="office-details-form">
+            <div class="form-title">Update Office Details</div>
+
+            <nz-form-item>
+                <nz-form-control [nzSpan]="16" [nzOffset]="4">
+                    <input nz-input formControlName="name" placeholder="Office Name" />
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-control [nzSpan]="16" [nzOffset]="4">
+                    <input nz-input formControlName="type" placeholder="Office Type" />
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-control [nzSpan]="16" [nzOffset]="4">
+                    <input nz-input formControlName="price" placeholder="Office Price" />
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label nz-form-item-control [nzSpan]="11" [nzOffset]="4">
+                    <button nz-button nzType="primary" type="submit" (click)="submitForm()">Update</button>
+                </nz-form-label>
+            </nz-form-item>
+        </nz-form>
+    </div>
+</nz-spin>

@@ -1,0 +1,38 @@
+<div class="center-form">
+    <button nz-button nzType="primary" class="post-office-btn" routerLink="/admin/office">Create Office</button>
+
+    <div class="office-container">
+        <div class="office-row" *ngFor="let office of offices">
+            <nz-card style="width: 300px; margin: 16px" [nzActions]="[actionEdit, actionDelete]">
+                <nz-skeleton [nzActive]="true" [nzLoading]="loading" [nzAvatar]="{ size: 'large' }">
+                    <nz-card-meta [nzAvatar]="avatarTemplate" nzTitle="{{ office.name }}"
+                        nzDescription="Type: {{ office.type }}">
+                    </nz-card-meta>
+                    <nz-card-meta style="margin-left: 49px;" nzDescription="Price: {{ office.price }}">
+                    </nz-card-meta>
+                </nz-skeleton>
+            </nz-card>
+            <ng-template #avatarTemplate>
+                <nz-avatar
+                    nzSrc="https://www.animaexsto.hr/slike/n1.jpg"></nz-avatar>
+            </ng-template>
+            <ng-template #actionEdit>
+                <span nz-tooltip nzTooltipTitle="Edit Office" nzTooltipPlacement="left">
+                    <span nz-icon nzType="edit" [nzTheme]="'twotone'" class="icon"
+                        routerLink="/admin/office/{{office.id}}/edit">
+                    </span>
+                </span>
+            </ng-template>
+            <ng-template #actionDelete>
+                <span nz-tooltip nzTooltipTitle="Delete Office" nzTooltipPlacement="right">
+                    <span nz-icon nzType="delete" [nzTheme]="'twotone'" class="icon" [nzTwotoneColor]="'#FF0000'"
+                        (click)="showConfirm(office.id)"></span>
+                </span>
+            </ng-template>
+        </div>
+    </div>
+    <div class="pagination">
+        <nz-pagination (nzPageIndexChange)="pageIndexChange($event)" [nzPageIndex]="currentPage" [nzTotal]="total"
+            [nzPageSize]="5"></nz-pagination>
+    </div>
+</div>

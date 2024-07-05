@@ -1,0 +1,40 @@
+<div class="center-form">
+    <div class="office-container">
+        <div class="office-row" *ngFor="let office of offices">
+            <nz-card style="width: 300px; margin: 16px" [nzActions]="[actionEdit]">
+                <nz-skeleton [nzActive]="true" [nzLoading]="loading" [nzAvatar]="{ size: 'large' }">
+                    <nz-card-meta [nzAvatar]="avatarTemplate" nzTitle="{{ office.name }}"
+                        nzDescription="Type: {{ office.type }}">
+                    </nz-card-meta>
+                    <nz-card-meta style="margin-left: 48px;" nzDescription="Price: {{ office.price }}">
+                    </nz-card-meta>
+                </nz-skeleton>
+            </nz-card>
+            <ng-template #avatarTemplate>
+                <nz-avatar
+                    nzSrc="https://www.animaexsto.hr/slike/n1.jpg"></nz-avatar>
+            </ng-template>
+            <ng-template #actionEdit>
+                <span nz-tooltip nzTooltipTitle="Reserve Office" nzTooltipPlacement="bottom">
+                    <span nz-icon nzType="check-square" (click)="showModalMiddle(office.id)" [nzTheme]="'twotone'"
+                        class="icon">
+                    </span>
+                </span>
+            </ng-template>
+        </div>
+    </div>
+    <div class="pagination">
+        <nz-pagination (nzPageIndexChange)="pageIndexChange($event)" [nzPageIndex]="currentPage" [nzTotal]="total"
+            [nzPageSize]="5"></nz-pagination>
+    </div>
+</div>
+
+<nz-modal [(nzVisible)]="isVisibleMiddle" nzTitle="Reserve Office" nzCentered (nzOnCancel)="handleCancelMiddle()"
+    (nzOnOk)="handleOkMiddle()">
+    <ng-container *nzModalContent>
+        <div class="modal-content">
+            <nz-range-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"
+                style="width: 100%;"></nz-range-picker>
+        </div>
+    </ng-container>
+</nz-modal>
